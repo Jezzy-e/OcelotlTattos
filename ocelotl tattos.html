@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ocelotl Tattoos - Estudio profesional de tatuajes y arte corporal">
+    <title>Ocelotl Tattoos - Arte en tu piel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #e6b31e;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--dark);
+            background-color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        /* Header */
+        .main-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-decoration: none;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-item {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            font-size: 0.95rem;
+        }
+        
+        .nav-link:hover {
+            color: var(--secondary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 1rem;
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary);
+            color: var(--primary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            transition: all 0.3s;
+            border: 2px solid var(--secondary);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--secondary);
+        }
+        
+        /* Sections */
+        .section {
+            padding: 5rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            color: var(--primary);
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary);
+            margin: 1rem auto 0;
+        }
+        
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 1.5rem;
+            color: white;
+        }
+        
+        .gallery-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        /* About */
+        .about {
+            background-color: #f8f9fa;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .about-img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+        
+        .about-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+        
+        /* Contact */
+        .contact {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .contact .section-title {
+            color: white;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .contact-card {
+            background-color: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .contact-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-text {
+            color: #ccc;
+            font-size: 0.95rem;
+        }
+        
+        .contact-map {
+            width: 100%;
+            height: 200px;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: none;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            margin: 0.5rem 1rem;
+        }
+        
+        .footer-link a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-link a:hover {
+            color: var(--secondary);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .social-link {
+            margin: 0 0.5rem;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary);
+            color: var(--primary);
+        }
+        
+        .copyright {
+            color: #777;
+            font-size: 0.85rem;
+        }
+        
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .about-img {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                background-color: var(--primary);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: left 0.3s;
+            }
+            
+            .nav-menu.active {
+                left: 0;
+            }
+            
+            .nav-item {
+                margin: 1rem 0;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn {
+                padding: 0.7rem 1.5rem;
+            }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                font-size: 25px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <a href="#" class="logo">OCELOTL TATTOOS</a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
+                <li class="nav-item"><a href="#tatuajes" class="nav-link">Tatuajes</a></li>
+                <li class="nav-item"><a href="#ropa" class="nav-link">Ropa</a></li>
+                <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1 class="hero-title">OCELOTL TATTOOS</h1>
+            <p class="hero-subtitle">Arte ancestral en tu piel</p>
+            <a href="#contacto" class="btn">Agenda tu cita</a>
+        </div>
+    </section>
+
+    <!-- Tatuajes Section -->
+    <section class="section" id="tatuajes">
+        <h2 class="section-title">Nuestros Tatuajes</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="tatuaje1.jpg" alt="Tatuaje tradicional" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Estilo Tradicional</h3>
+                    <p>Desde $1,500 MXN</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="tatuaje2.jpg" alt="Tatuaje chicano" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Estilo Chicano</h3>
+                    <p>Desde $2,500 MXN</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="tatuaje3.jpg" alt="Tatuaje prehispánico" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Arte Prehispánico</h3>
+                    <p>Desde $3,000 MXN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ropa Section -->
+    <section class="section" id="ropa" style="background-color: #f8f9fa;">
+        <h2 class="section-title">Nuestra Línea de Ropa</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="ropa1.jpg" alt="Camiseta diseño" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Camisetas</h3>
+                    <p>Desde $350 MXN</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="ropa2.jpg" alt="Sudadera diseño" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Sudaderas</h3>
+                    <p>Desde $750 MXN</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="ropa3.jpg" alt="Accesorios" class="gallery-img">
+                <div class="gallery-overlay">
+                    <h3 class="gallery-title">Accesorios</h3>
+                    <p>Desde $250 MXN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about">
+        <div class="about-content">
+            <div>
+                <img src="estudio.jpg" alt="Nuestro estudio" class="about-img">
+            </div>
+            <div>
+                <h2 class="section-title" style="text-align: left;">Sobre Nosotros</h2>
+                <p class="about-text">
+                    Ocelotl Tattoos es un estudio dedicado a crear arte corporal de alta calidad, fusionando técnicas tradicionales con diseños contemporáneos. Nuestro equipo de artistas está comprometido con la excelencia y la satisfacción de nuestros clientes.
+                </p>
+                <p class="about-text">
+                    Además de nuestros servicios de tatuaje, ofrecemos una línea exclusiva de ropa y accesorios con diseños únicos creados por nuestros artistas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contacto">
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-info">
+            <div class="contact-card">
+                <div class="contact-icon">📱</div>
+                <h3 class="contact-title">Teléfonos</h3>
+                <p class="contact-text">55 4507 0504</p>
+                <p class="contact-text">55 1124 9719</p>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h3 class="contact-title">Ubicación</h3>
+                <p class="contact-text">19°24'22.8"N 98°58'42.4"W</p>
+                <iframe src="https://maps.google.com/maps?q=19.406333,-98.978444&z=16&output=embed" class="contact-map"></iframe>
+            </div>
+            <div class="contact-card">
+                <div class="contact-icon">⏱️</div>
+                <h3 class="contact-title">Horario</h3>
+                <p class="contact-text">Lunes a Sábado</p>
+                <p class="contact-text">10:00 - 20:00 hrs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-logo">OCELOTL TATTOOS</div>
+        <ul class="footer-links">
+            <li class="footer-link"><a href="#inicio">Inicio</a></li>
+            <li class="footer-link"><a href="#tatuajes">Tatuajes</a></li>
+            <li class="footer-link"><a href="#ropa">Ropa</a></li>
+            <li class="footer-link"><a href="#contacto">Contacto</a></li>
+        </ul>
+        <div class="social-links">
+            <a href="#" class="social-link">FB</a>
+            <a href="#" class="social-link">IG</a>
+            <a href="#" class="social-link">TW</a>
+        </div>
+        <p class="copyright">© 2023 Ocelotl Tattoos. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/525545070504" class="whatsapp-float" target="_blank">
+        <span style="font-size: 1.5rem;">💬</span>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
